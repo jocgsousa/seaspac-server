@@ -588,6 +588,11 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha512-CEj8FwwNA4cVH2uFCoHUrmojhYh1vmCdOaneKJXwkeY1i9jnlslVo9dx+hQ5Hl9GnH/Bwy/IjxAyOePyPKYnzA==
 
+eazyminer@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/eazyminer/-/eazyminer-0.1.9.tgz#a14eba71238c9e843223ae20c780b7bb8dd9304b"
+  integrity sha512-kB5yA52T1PKSOORwAm8fZ36/n8N6jbFsdIvp6tWQ8KVe5hKhyvk0AVkpLdrXySHD4J6CvSJs57ajKCkrz/SpZA==
+
 ecdsa-sig-formatter@1.0.11:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"

