@@ -1,0 +1,51 @@
+{
+  "name": "seaspac-servidor",
+  "version": "1.0.0",
+  "author": "jocgsousa",
+  "main": ".dist/serever.js",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "date-fns": "^2.28.0",
+    "date-fns-tz": "^1.3.5",
+    "dotenv": "^16.0.1",
+    "expres": "^0.0.5",
+    "express": "^4.18.1",
+    "file-type": "^17.1.2",
+    "filesize": "^9.0.9",
+    "jsonwebtoken": "^8.5.1",
+    "localtunnel": "^2.0.2",
+    "lodash": "^4.17.21",
+    "mariadb": "^3.0.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.0",
+    "socket.io": "^4.5.1",
+    "yup": "^0.32.11"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "dev:debug": "nodemon --inspect src/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "database": "concurrently \"yarn sequelize db:create && yarn sequelize db:migrate && sequelize db:seed:all\"",
+    "migrations:delete": "concurrently \"yarn sequelize db:migrate:undo:all",
+    "database:delete": "concurrently \"yarn sequelize db:drop \" ",
+    "add-save": "git add .",
+    "commit-save": "git commit -m \"App updated\"",
+    "push-save": "git push",
+    "save": "concurrently \"yarn add-save && yarn commit-save && yarn push-save",
+    "build-database": "node src/database/backup.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.2",
+    "nodemon": "^2.0.16",
+    "sequelize-cli": "^6.4.1",
+    "sucrase": "^3.21.0",
+    "wait-on": "^6.0.1"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
