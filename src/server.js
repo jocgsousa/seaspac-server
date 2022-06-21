@@ -4,8 +4,20 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import path from "path";
-
 import "dotenv/config";
+
+// Init connection DATABASE
+
+import "./database";
+
+// CONTROLLERS
+import UserController from "./app/controllers/UserController";
+import SessionController from "./app/controllers/SessionController";
+import DepartamentoController from "./app/controllers/DepartamentoController";
+
+// MIDDLEWARES
+import authMiddleware from "./app/middlewares/auth";
+import SectionsController from "./app/controllers/SectionsController";
 
 const app = express();
 app.use(express.json());
@@ -13,7 +25,34 @@ app.use(cors());
 
 const routes = new Router();
 
-routes.get("/", (req, res) => res.json({ message: "Hello World" }));
+// ROUTES =====================================================================
+// ROUTES =====================================================================
+
+routes.get("/", (req, res) =>
+  res.json({ message: "route default is running..." })
+);
+
+// SESSÕES
+routes.post("/session", SessionController.store);
+
+routes.use(authMiddleware);
+// REGISTRO DE USUARIOS
+routes.post("/user", UserController.store);
+routes.put("/user/:id", UserController.update);
+routes.get("/user", UserController.index);
+// Departamento
+routes.post("/departamento", DepartamentoController.store);
+routes.put("/departamento/:id", DepartamentoController.update);
+routes.delete("/departamento/:id", DepartamentoController.delete);
+routes.get("/departamento", DepartamentoController.index);
+
+// Seções
+routes.post("/section", SectionsController.store);
+routes.put("/section/:id", SectionsController.update);
+routes.delete("/section/:id", SectionsController.delete);
+routes.get("/section", SectionsController.index);
+// ROUTES =====================================================================
+// ROUTES =====================================================================
 
 const server = createServer(app);
 
