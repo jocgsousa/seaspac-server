@@ -45,5 +45,5 @@ server.listen(process.env.PORT, async () => {
     subdomain: "seaspacserver",
   });
 
-  console.log(tunnel);
+  console.log(tunnel.url);
 });
