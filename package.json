@@ -2,7 +2,7 @@
   "name": "seaspac-servidor",
   "version": "1.0.0",
   "author": "jocgsousa",
-  "main": ".dist/server.js",
+  "main": "./dist/server.js",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
