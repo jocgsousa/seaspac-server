@@ -18,6 +18,8 @@ import DepartamentoController from "./app/controllers/DepartamentoController";
 // MIDDLEWARES
 import authMiddleware from "./app/middlewares/auth";
 import SectionsController from "./app/controllers/SectionsController";
+import FormController from "./app/controllers/FormController";
+import FormDataController from "./app/controllers/FormDataController";
 
 const app = express();
 app.use(express.json());
@@ -51,6 +53,18 @@ routes.post("/section", SectionsController.store);
 routes.put("/section/:id", SectionsController.update);
 routes.delete("/section/:id", SectionsController.delete);
 routes.get("/section", SectionsController.index);
+
+// Modelo de formulário
+routes.post("/form", FormController.store);
+routes.put("/form/:id", FormController.update);
+routes.delete("/form/:id", FormController.delete);
+routes.get("/form/:id", FormController.index);
+
+// Registro de formulários
+routes.post("/form-data", FormDataController.store);
+routes.put("/form-data/:id", FormDataController.update);
+routes.delete("/form-data/:id", FormDataController.delete);
+routes.get("/form-data/:id", FormDataController.index);
 // ROUTES =====================================================================
 // ROUTES =====================================================================
 

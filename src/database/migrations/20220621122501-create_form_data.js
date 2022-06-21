@@ -38,6 +38,17 @@ module.exports = {
         },
       },
 
+      fk_author_id: {
+        type: Sequelize.INTEGER,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+
+        references: {
+          model: "users",
+          key: "id",
+        },
+      },
+
       fk_form_id: {
         type: Sequelize.INTEGER,
         onUpdate: "CASCADE",

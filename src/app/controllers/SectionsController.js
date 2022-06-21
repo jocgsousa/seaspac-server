@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 import User from "../models/User";
 import Section from "../models/Section";
+import Departamento from "../models/Departamento";
 import Form from "../models/Form";
 
 class SectionsController {
@@ -16,6 +17,17 @@ class SectionsController {
 
     if (!(await schema.isValid(request.body))) {
       return response.status(400).json({ error: "Validation fails" });
+    }
+
+    const isSection = await Section.findOne({
+      title: request.body.title,
+      fk_dep_id: request.body.fk_dep_id,
+    });
+
+    if (isSection) {
+      return response
+        .status(400)
+        .json({ message: "Já existe uma seção com o mesmo nome!" });
     }
 
     try {
@@ -91,11 +103,18 @@ class SectionsController {
       return response.status(400).json({ error: "Operação não autorizada!" });
     }
 
-    const secoes = await Section.findAll({
+    const secoes = await Departamento.findAll({
       include: [
         {
-          model: Form,
-          as: "formularios",
+          model: Section,
+          as: "secoes",
+
+          include: [
+            {
+              model: Form,
+              as: "formularios",
+            },
+          ],
         },
       ],
     });

@@ -6,6 +6,8 @@ module.exports = {
       {
         name: "CRAS - BELA VISTA",
         active: true,
+        created_at: new Date(),
+        updated_at: new Date(),
       },
     ]);
   },

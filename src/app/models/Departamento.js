@@ -22,6 +22,13 @@ class Departamento extends Model {
       foreignKey: "fk_dep_id",
       otherKey: "id",
     });
+
+    this.belongsToMany(model.Section, {
+      through: "sections",
+      as: "secoes",
+      foreignKey: "fk_dep_id",
+      otherKey: "id",
+    });
   }
 }
 
