@@ -1,5 +1,6 @@
 // import * as Yup from "yup";
-// import User from "../models/User";
+import User from "../models/User";
+import Form from "../models/Form";
 import Section from "../models/Section";
 import FormData from "../models/FormData";
 import Departamento from "../models/Departamento";
@@ -18,7 +19,10 @@ class FormDataController {
     }
 
     try {
-      const form = await FormData.create(request.body);
+      const form = await FormData.create({
+        ...request.body,
+        fk_author_id: request.userId,
+      });
       return response.json({
         message: "Formulário registrado com sucesso!",
         form,
@@ -77,13 +81,24 @@ class FormDataController {
   }
 
   async index(request, response) {
-    const formuario = await FormData.findByPk(request.params.id);
-    if (!formuario) {
-      return response
-        .status(400)
-        .json({ message: "Este formulário não existe" });
-    }
-    return response.json(formuario);
+    const formuarios = await FormData.findAll({
+      where: {
+        fk_form_id: request.params.id,
+      },
+      include: [
+        {
+          model: User,
+          as: "author",
+          attributes: ["id", "name", "username", "email"],
+        },
+        {
+          model: Form,
+          as: "formulario",
+        },
+      ],
+    });
+
+    return response.json(formuarios);
   }
 }
 

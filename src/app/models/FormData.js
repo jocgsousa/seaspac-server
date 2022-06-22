@@ -1,6 +1,6 @@
 import Sequelize, { Model } from "sequelize";
 
-class FormData extends Model {
+class FormDatas extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -25,9 +25,9 @@ class FormData extends Model {
     });
     this.belongsTo(model.Form, {
       foreignKey: "fk_form_id",
-      as: "form",
+      as: "formulario",
     });
   }
 }
 
-export default FormData;
+export default FormDatas;
