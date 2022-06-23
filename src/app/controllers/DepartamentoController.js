@@ -18,10 +18,22 @@ class DepartamentoController {
       return response.status(400).json({ error: "Operação não autorizada!" });
     }
 
+    const isDepartamento = await Departamento.findOne({
+      where: {
+        name: request.body.name,
+      },
+    });
+
+    if (isDepartamento) {
+      return response
+        .status(400)
+        .json({ error: "Setor/projeto já cadastrado com este nome!" });
+    }
+
     try {
       const departamento = await Departamento.create(request.body);
       return response.json({
-        message: "Departamento cadastrado com sucesso!",
+        message: "Setor/projeto cadastrado com sucesso!",
         departamento,
       });
     } catch (error) {
