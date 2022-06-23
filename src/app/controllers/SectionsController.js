@@ -20,8 +20,10 @@ class SectionsController {
     }
 
     const isSection = await Section.findOne({
-      title: request.body.title,
-      fk_dep_id: request.body.fk_dep_id,
+      where: {
+        title: request.body.title,
+        fk_dep_id: Number(request.body.fk_dep_id),
+      },
     });
 
     if (isSection) {
