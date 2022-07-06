@@ -37,6 +37,12 @@ module.exports = {
           key: "id",
         },
       },
+      encaminhamentos: {
+        type: Sequelize.TEXT,
+      },
+      fk_super_id: {
+        type: Sequelize.INTEGER,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

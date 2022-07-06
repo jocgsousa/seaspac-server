@@ -9,6 +9,8 @@ class FormDatas extends Model {
         fk_section_id: Sequelize.INTEGER,
         fk_dep_id: Sequelize.INTEGER,
         fk_author_id: Sequelize.INTEGER,
+        fk_form_id: Sequelize.INTEGER,
+        fk_super_id: Sequelize.INTEGER,
       },
       {
         sequelize,

@@ -60,6 +60,17 @@ module.exports = {
         },
       },
 
+      fk_super_id: {
+        type: Sequelize.INTEGER,
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+
+        references: {
+          model: "forms",
+          key: "id",
+        },
+      },
+
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
