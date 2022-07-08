@@ -89,6 +89,12 @@ class SectionsController {
       return response.status(400).json({ error: "Seção não existe!" });
     }
 
+    const isForm = await Form.findAll({
+      where: {
+        fk_dep_id: request.params.id,
+      },
+    });
+
     try {
       await isSection.destroy();
       return response.json({ message: "Deletado com sucesso!" });

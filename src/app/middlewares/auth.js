@@ -6,7 +6,9 @@ export default async (request, response, next) => {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    return response.status(400).json({ error: "Token not provide" });
+    return response
+      .status(400)
+      .json({ error: "Token not provide", token: false });
   }
 
   const [, token] = authHeader.split(" ");
@@ -16,6 +18,6 @@ export default async (request, response, next) => {
     request.userId = decoded.id;
     return next();
   } catch (error) {
-    return response.status(400).json({ error: "Token inválido" });
+    return response.status(400).json({ error: "Token inválido", token: false });
   }
 };

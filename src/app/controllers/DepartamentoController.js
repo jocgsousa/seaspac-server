@@ -1,5 +1,7 @@
 import * as Yup from "yup";
 import Departamento from "../models/Departamento";
+import Section from "../models/Section";
+import Form from "../models/Form";
 import User from "../models/User";
 
 class DepartamentoController {
@@ -71,6 +73,29 @@ class DepartamentoController {
     const isDep = await Departamento.findByPk(request.params.id);
     if (!isDep) {
       return response.status(400).json({ error: "Falha ao deletar!" });
+    }
+
+    const isSections = await Section.findAll({
+      where: { fk_dep_id: request.params.id },
+    });
+    if (isSections) {
+      await Section.destroy({
+        where: {
+          fk_dep_id: request.params.id,
+        },
+      });
+    }
+
+    const isForms = await Form.findAll({
+      where: { fk_dep_id: request.params.id },
+    });
+
+    if (isForms) {
+      Form.destroy({
+        where: {
+          fk_dep_id: request.params.id,
+        },
+      });
     }
 
     try {
